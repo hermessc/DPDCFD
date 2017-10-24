@@ -30,5 +30,7 @@ else
 		storageMatrix[0][0] = 1.0;
 		storageMatrix[0][1] = 0.5;		
 		}
+
+flagRunMe = 0;
 delete lmp;
 
