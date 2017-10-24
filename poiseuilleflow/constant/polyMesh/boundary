@@ -21,34 +21,34 @@ FoamFile
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          10;
-        startFace       180;
+        nFaces          20;
+        startFace       760;
     }
     bottom
     {
         type            symmetryPlane;
         inGroups        1(symmetryPlane);
-        nFaces          10;
-        startFace       190;
+        nFaces          20;
+        startFace       780;
     }
     inlet
     {
         type            patch;
-        nFaces          10;
-        startFace       200;
+        nFaces          20;
+        startFace       800;
     }
     outlet
     {
         type            patch;
-        nFaces          10;
-        startFace       210;
+        nFaces          20;
+        startFace       820;
     }
     frontAndBack
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          200;
-        startFace       220;
+        nFaces          800;
+        startFace       840;
     }
 )
 
