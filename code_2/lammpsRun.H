@@ -19,9 +19,6 @@ if (flagRunMe == 0)
 		if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 			}
-
-		storageMatrix[i][0] = 1;
-		storageMatrix[i][1] = 0.01;
 		break;	
 		}	
 	}

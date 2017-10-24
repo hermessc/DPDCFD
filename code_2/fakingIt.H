@@ -26,6 +26,7 @@ else
 	
 	if (std::round(shearRate[celli]) == 1)
 		{
+		cout<<"We imbecille!!!!!!!!!!!!!!!";
 		viscoDPD[celli] = 0.5;
 		storageMatrix[0][0] = 1.0;
 		storageMatrix[0][1] = 0.5;		
