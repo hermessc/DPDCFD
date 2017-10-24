@@ -26,8 +26,8 @@ FoamFile
     }
     bottom
     {
-        type            wall;
-        inGroups        1(wall);
+        type            symmetryPlane;
+        inGroups        1(symmetryPlane);
         nFaces          10;
         startFace       190;
     }

@@ -19,7 +19,7 @@ FoamFile
 
 Simulation
 {
-	DPD_Sim_Every_X_Timestep 40;      
+	DPD_Sim_Every_X_Timestep 400;      
 }
 
 // ************************************************************************* //

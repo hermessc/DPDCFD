@@ -213,9 +213,9 @@ Memory usage per processor = 24.0367 Mbytes
 Step Temp E_pair E_mol TotEng Press 
        0            0    7.8441595            0    7.8441595    18.844752 
       36            0    4.2162452            0    4.2162452    16.613297 
-Loop time of 3.28728 on 2 procs for 36 steps with 24000 atoms
+Loop time of 2.42089 on 2 procs for 36 steps with 24000 atoms
 
-99.8% CPU use with 2 MPI tasks x no OpenMP threads
+99.9% CPU use with 2 MPI tasks x no OpenMP threads
 
 Minimization stats:
   Stopping criterion = energy tolerance
@@ -229,13 +229,13 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 2.4717     | 2.5675     | 2.6632     |   6.0 | 78.10
-Bond    | 0.00013638 | 0.00013852 | 0.00014067 |   0.0 |  0.00
-Neigh   | 0.13555    | 0.13556    | 0.13557    |   0.0 |  4.12
-Comm    | 0.43962    | 0.53598    | 0.63234    |  13.2 | 16.30
+Pair    | 1.8294     | 1.9001     | 1.9708     |   5.1 | 78.49
+Bond    | 8.9884e-05 | 0.00011504 | 0.00014019 |   0.2 |  0.00
+Neigh   | 0.12762    | 0.12763    | 0.12764    |   0.0 |  5.27
+Comm    | 0.27949    | 0.3496     | 0.4197     |  11.9 | 14.44
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.04812    |            |       |  1.46
+Other   |            | 0.04344    |            |       |  1.79
 
 Nlocal:    12000 ave 12120 max 11880 min
 Histogram: 1 0 0 0 0 0 0 0 0 1
@@ -284,7 +284,7 @@ Neighbor list info ...
 Memory usage per processor = 19.052 Mbytes
 Step Temp E_pair E_mol TotEng Press 
       36            0    4.2162452            0    4.2162452    16.711674 
-Loop time of 1.78814e-06 on 2 procs for 0 steps with 24000 atoms
+Loop time of 2.14577e-06 on 2 procs for 0 steps with 24000 atoms
 
 0.0% CPU use with 2 MPI tasks x no OpenMP threads
 
@@ -297,7 +297,7 @@ Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 1.788e-06  |            |       |100.00
+Other   |            | 2.146e-06  |            |       |100.00
 
 Nlocal:    12000 ave 12101 max 11899 min
 Histogram: 1 0 0 0 0 0 0 0 0 1
@@ -337,7 +337,7 @@ WARNING: Use special bonds = 0,1,1 with bond style fene (../bond_fene.cpp:188)
 Memory usage per processor = 19.0672 Mbytes
 Step Temp Press Pxy visc vave 
       36   0.44450588    17.950247   0.14274372   -1.4274372            0 
-Loop time of 2.02656e-06 on 2 procs for 0 steps with 24000 atoms
+Loop time of 1.90735e-06 on 2 procs for 0 steps with 24000 atoms
 
 0.0% CPU use with 2 MPI tasks x no OpenMP threads
 
@@ -350,7 +350,7 @@ Neigh   | 0          | 0          | 0          |   0.0 |  0.00
 Comm    | 0          | 0          | 0          |   0.0 |  0.00
 Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 2.027e-06  |            |       |100.00
+Other   |            | 1.907e-06  |            |       |100.00
 
 Nlocal:    12000 ave 12101 max 11899 min
 Histogram: 1 0 0 0 0 0 0 0 0 1
@@ -374,4 +374,4 @@ Dangerous builds not checked
 
 #############################
 
-Total wall time: 0:00:03
+Total wall time: 0:00:02
