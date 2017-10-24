@@ -1,4 +1,3 @@
-
 	while (1) {
 		if (me == 0) {
 			if (fgets(line,1024,sp) == NULL) n = 0;

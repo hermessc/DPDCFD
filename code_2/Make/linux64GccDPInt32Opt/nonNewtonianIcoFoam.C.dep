@@ -776,8 +776,8 @@ myVar.H \
 DPDictionary.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
 DPDCode.H \
-runOnlyIfMissing.H \
 initialSetup.H \
+runOnlyIfMissing.H \
 lammpsRun.H \
 fakingIt.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
