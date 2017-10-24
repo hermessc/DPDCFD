@@ -1,0 +1,2 @@
+$HOME/Desktop/Programmi/MPI/install/bin/mpirun -n 2 AnonNewtonianIcoFoam -parallel >& log
+

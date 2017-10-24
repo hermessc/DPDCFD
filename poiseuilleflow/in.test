@@ -1,0 +1,2 @@
+variable f world 1.script 2.script 3.script
+jump $f

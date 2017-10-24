@@ -1,6 +1,5 @@
 
-int storageMatrix[10][2] = {{0}};
-int flagRunMe = 0;
+/*
 flagRunMe = 0;
 for (int i=0;i<10;i++)
 	{
@@ -8,8 +7,10 @@ for (int i=0;i<10;i++)
 		{
 		 viscoDPD[celli] = storageMatrix[i][1];
 		 flagRunMe = 1;	
+		MPI_Bcast(&flagRunMe,1,MPI_INT,0,MPI_COMM_WORLD);
 		cout << "sto sabotando tutto";	
 		} 		
+	MPI_Barrier(MPI_COMM_WORLD);
 
 	}
-
+*/
