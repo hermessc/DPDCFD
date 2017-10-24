@@ -1,0 +1,60 @@
+# 1 "options"
+# 1 "<built-in>"
+# 1 "<command-line>"
+
+
+
+
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+
+# 17 "/usr/include/stdc-predef.h" 3 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4 "<command-line>" 2
+# 1 "options"
+EXE_INC = -I$(LIB_SRC)/transportModels -I$(LIB_SRC)/transportModels/incompressible/singlePhaseTransportModel -I$(LIB_SRC)/finiteVolume/lnInclude -I$(LIB_SRC)/meshTools/lnInclude -I/home/hermes/Desktop/Programmi/Lammps/lammps-14May16/src -I/usr/lib/mpich/include -I/home/hermes/Desktop/Programmi/MPI/install/include -I/home/hermes/Desktop/Programmi/Lammps/lammps-14May16/src/Obj_shared_mpi
+# 10 "options"
+
+
+EXE_LIBS = -lincompressibleTransportModels -L/home/hermes/Desktop/Programmi/Lammps/lammps-14May16/src -L/home/hermes/Desktop/Programmi/MPI/install/lib -lmpi -llammps_mpi -lmpicxx -lmpich -lfiniteVolume -lmeshTools
