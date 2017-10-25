@@ -1,5 +1,5 @@
 shearRate = mag(fvc::grad(U)); 
-char shearStr[1024]= "fix		shear all deform 1 xy erate ${srate} remap v flip yes units box";
+#include "shearConverter.H"
       //  std::sprintf(shearStr,"fix		shear all deform 1 xy erate ${srate} remap v flip yes units box",controlVariable);
 if (flagRunMe == 0)
 	for (int i=0;i<10;i++)
@@ -19,7 +19,7 @@ if (flagRunMe == 0)
 		MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
 		std::string controlstr(line);
 		if (controlstr == "#shear\n")	{
-		if (lammps == 1) lmp->input->one(shearStr);
+		if (lammps == 1) lmp->input->one(controlShear);
 			}
 		else lmp->input->one(line);
 		//if (lammps == 1) lmp->input->one(line);
