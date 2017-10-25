@@ -1,4 +1,5 @@
 TO BE FIXED:
 
-- Implementing a fake shear/viscosity curve
+- Implementing a fake shear/viscosity curve (OK)
 - Storage Matrix to avoid repated calc.
+- check if proc1 results are sent to proc1 OF
