@@ -780,6 +780,7 @@ initialSetup.H \
 runOnlyIfMissing.H \
 lammpsRun.H \
 fakingIt.H \
+viscosityMod.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
 
 

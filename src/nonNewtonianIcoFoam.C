@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 	
 	//DPD simulation
         #include "DPDCode.H"
-
+	#include "viscosityMod.H"
         // Momentum predictor
 
 
