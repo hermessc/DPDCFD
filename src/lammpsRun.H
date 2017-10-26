@@ -10,7 +10,6 @@ if (me == 0){
 	if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
 		while (1) {
-			MPI_Barrier(MPI_COMM_WORLD);
 			if (me == 0) {
 				if (fgets(line,1024,sp) == NULL) n = 0;
 				else n = strlen(line) + 1;
@@ -20,12 +19,10 @@ if (me == 0){
 			if (n == 0) break;
 			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
 			std::string controlstr(line);
-			MPI_Barrier(MPI_COMM_WORLD);
 			if (controlstr == "#shear\n") {
 				if (lammps == 1) lmp->input->one(controlShear);
 				}
 			else lmp->input->one(line);
-			MPI_Barrier(MPI_COMM_WORLD);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 		}
@@ -33,7 +30,7 @@ if (me == 0){
 	}
 	else
 	continue;	
-	MPI_Barrier(MPI_COMM_WORLD);
+
 }
 
 else {
@@ -41,7 +38,6 @@ else {
 	if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
 		while (1) {
-			MPI_Barrier(MPI_COMM_WORLD);
 			if (me == 0) {
 				if (fgets(line,1024,sp) == NULL) n = 0;
 				else n = strlen(line) + 1;
@@ -51,12 +47,10 @@ else {
 			if (n == 0) break;
 			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
 			std::string controlstr(line);
-			MPI_Barrier(MPI_COMM_WORLD);
 			if (controlstr == "#shear\n") {
 				if (lammps == 1) lmp->input->one(controlShear);
 				}
 			else lmp->input->one(line);
-			MPI_Barrier(MPI_COMM_WORLD);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 			}
@@ -64,5 +58,5 @@ else {
 	}
 	else
 	continue;
-	MPI_Barrier(MPI_COMM_WORLD);	
 }
+

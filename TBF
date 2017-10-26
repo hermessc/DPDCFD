@@ -6,3 +6,4 @@ TO BE FIXED:
 	segnale inviato correttamente agli altr procs (OK)
 	verificare il salvataggio/correzione dei valori precedenti
 - check if proc1 results are sent to proc1 OF
+- Bisogna sistemare bene i barrier

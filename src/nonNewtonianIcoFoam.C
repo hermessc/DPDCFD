@@ -61,7 +61,11 @@ int main(int argc, char *argv[])
         #include "CourantNo.H"
 	fluid.correct();
 
-	
+	FILE *sp; // open LAMMPS input script
+   //if (me == 0) 
+  	//{
+    
+	//}
 	//DPD simulation
         #include "DPDCode.H"
 	#include "viscosityMod.H"
