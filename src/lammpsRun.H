@@ -6,6 +6,7 @@ shearRate = mag(fvc::grad(U));
       //  std::sprintf(shearStr,"fix		shear all deform 1 xy erate ${srate} remap v flip yes units box",controlVariable);
 MPI_Barrier(MPI_COMM_WORLD);
 if (me == 0){
+	cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 //cout<<"proc num"<<me<<"\n";
 	if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
@@ -36,7 +37,7 @@ if (me == 0){
 else {
 //cout<<"proc num"<<me<<"\n";
 	if (flagRunMe == 0){
-//		cout<<"Dentro if\n\n";
+		cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 		while (1) {
 			if (me == 0) {
 				if (fgets(line,1024,sp) == NULL) n = 0;
