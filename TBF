@@ -1,5 +1,8 @@
 TO BE FIXED:
 
 - Implementing a fake shear/viscosity curve (OK)
-- Storage Matrix to avoid repated calc.
+	momentanea funzione che cambia il valore della viscosità in base al valore di shear reale 	inviato dalle celle. Serve per testare la stabilità del codice qualora si trova a risolvere 	un sistema con viscosità diverse in celle diverse. (OK)
+- Storage Matrix to avoid repated calc. (Fixing)
+	segnale inviato correttamente agli altr procs (OK)
+	verificare il salvataggio/correzione dei valori precedenti
 - check if proc1 results are sent to proc1 OF

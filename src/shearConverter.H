@@ -9,4 +9,4 @@ char shearStr[1024];
 char controlShear[1024];
 std::sprintf(controlShear,"fix		shear all deform 1 xy erate %f remap v flip yes units box",shearDPD);
 
-cout<<controlShear;
+//cout<<controlShear;
