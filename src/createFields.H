@@ -26,19 +26,20 @@ volVectorField U
     ),
     mesh
 );
-
+//H
+//Prima variabile di testing usata su icofoam (fluidi newtoniani) per provare a inserire una viscosità fittizia
 dimensionedScalar DPDnu (
 	"DPDnu",
 	dimViscosity,
 	0.1
 );
-
+//variabile per cambio dimensionale
 dimensionedScalar dummyNu (
 	"dummyNu",
 	dimViscosity,
 	1
 );
-
+//field contenente le viscosità ricavate da DPD per OGNI CELLA del dominio computazionale
 Info<< "Hey! I am faking the viscosity \n" << endl;
     volScalarField viscoDPD
     (

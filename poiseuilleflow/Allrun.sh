@@ -6,4 +6,3 @@ export LD_LIBRARY_PATH=/home/hermes/Desktop/Programmi/MPI/install/bin:$LD_LIBRAR
 $HOME/Desktop/Programmi/MPI/install/bin/mpirun -n 2 AnonNewtonianIcoFoam -parallel >& log
 reconstructPar
 
-

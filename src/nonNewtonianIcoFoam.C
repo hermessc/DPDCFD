@@ -30,10 +30,14 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+//H
+// includere mpi.h per parallelo
 #include "mpi.h"
 #include <string>
 #include "singlePhaseTransportModel.H"
 #include "pisoControl.H"
+//H
+//includere gli headers di lammps per funzioni
 #include "lammpsHeaders.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -47,7 +51,9 @@ int main(int argc, char *argv[])
     #include "createMeshNoClear.H"
     #include "createControl.H"
     #include "createFields.H"
-    #include "initContinuityErrs.H" 
+    #include "initContinuityErrs.H"
+	//H
+	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
     #include "DPDictionary.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -61,6 +67,8 @@ int main(int argc, char *argv[])
         #include "CourantNo.H"
 	fluid.correct();
 
+//H
+// parte che contiene tutto quello che serve per far partire le simulazioni di lammps prima del calcolo del campo di velocità
 	FILE *sp; // open LAMMPS input script
    //if (me == 0) 
   	//{
@@ -70,7 +78,7 @@ int main(int argc, char *argv[])
         #include "DPDCode.H"
 	#include "viscosityMod.H"
         // Momentum predictor
-
+// fine
 
         fvVectorMatrix UEqn
         (
@@ -128,8 +136,11 @@ int main(int argc, char *argv[])
             U.correctBoundaryConditions();
 	       
 	}
+	//H
+	//variabile che conta il numero di timestep che sono passati nel calcolo cfd
 	TimeCounter++; 	
-        runTime.write();
+	cout<<TimeCounter<<"\n\n\n\n";        
+	runTime.write();
 
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
@@ -137,7 +148,7 @@ int main(int argc, char *argv[])
     }
 
     Info<< "End\n" << endl;
-
+	
     return 0;
 }
 

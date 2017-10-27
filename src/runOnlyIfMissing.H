@@ -1,5 +1,12 @@
+//H
+/*
+creazione di una matrice di storage che conserva i valori di shear già trovati e la viscosità calcolata con lammps. In questo modo si vuole ridurre il calcolo di viscosità per valori di shear già presenti nel sistema.
 
-
+1) inizializzazione del flag
+2) la matrice è grande 10, ciclo sulle righe per vedere se il valore di shear è stato già trovato in precedenza
+3) se positivo, il flag cambia valore e la viscosità della cella viene semplicemente letta
+4) proc sincro
+*/
 flagRunMe = 0;
 for (int i=0;i<10;i++)
 	{
