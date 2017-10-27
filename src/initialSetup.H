@@ -44,3 +44,6 @@ if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(3,lmparg,comm_lammps);}
 			printf("ERROR: Could not open LAMMPS input script\n");
       			MPI_Abort(MPI_COMM_WORLD,1);
     		}
+
+//MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+MPI_Barrier(MPI_COMM_WORLD);

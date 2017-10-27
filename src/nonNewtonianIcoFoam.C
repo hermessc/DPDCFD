@@ -41,9 +41,19 @@ Description
 #include "lammpsHeaders.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+int **alloc_2d_int(int rows, int cols);
+int **alloc_2d_int(int rows, int cols) {
+    int *data = (int *)malloc(rows*cols*sizeof(int));
+    int **array= (int **)malloc(rows*sizeof(int*));
+    for (int i=0; i<rows; i++)
+        array[i] = &(data[cols*i]);
+
+    return array;
+}
 
 int main(int argc, char *argv[])
 {
+
     #include "postProcess.H"
 
     #include "setRootCase.H"
@@ -146,7 +156,7 @@ int main(int argc, char *argv[])
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;
     }
-
+		MPI_Finalize();
     Info<< "End\n" << endl;
 	
     return 0;

@@ -7,16 +7,56 @@
 // 5) flag per effettuare simulazioni di lammps resettata
 // 6) pulizia della memoria e del pointer che si riferisce a lammps.
 
-
+//cout<<"MI TROVO IN FAKINGIT.H";
 MPI_Barrier(MPI_COMM_WORLD);
-
-	double *array_val = NULL;
-	array_val =  (double *) lammps_extract_fix(lmp,(char *) "vave",0,0,1,1);
+int a;
+double *array_val = NULL;
+array_val =  (double *) lammps_extract_fix(lmp,(char *) "vave",0,0,1,1);
 	//cout<< *array_val;
-	double viscosity = *array_val;
+double viscosity = *array_val;
  	//cout<<viscosity;
+if (TimeCounter == 10){
+
+if(me == 0) {
+	//cout<<"Dentro il processore 00000000000000";
+	for( a = 0; a < 5; a++) {
+		//if (storageMatrix[a][0] == 0) {
+		cout<<"Dentro if per la "<<a<<" volta";
+		storageMatrix[a][0] = 1.0;
+       	 //MPI_Bcast(storageMatrix,10*2,MPI_DOUBLE,0,MPI_COMM_WORLD);
+		//break;		
+		//}
 	
-storageMatrix[0][0] = 1.0;
+	}
+//MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+}
+/*
+else {
+	for(int a = 5; a < 10; a++) {
+		if (storageMatrix[a][0] == 0) {
+		storageMatrix[a][0] = 2.0;
+		break;		
+		}
+	}
+}
+
+if(me==0) {
+	cout<<"Proc 0, Storage val: "<<storageMatrix[0][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[1][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[2][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[3][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[4][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[5][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[6][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[7][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[8][0];
+	cout<<"\nProc 0, Storage val: "<<storageMatrix[9][0];
+        MPI_Bcast(storageMatrix,10*2,MPI_DOUBLE,0,MPI_COMM_WORLD);
+
+}
+*/
+}
+//storageMatrix[0][0] = 1.0;
 //cout<<storageMatrix[0][0];
 //cout<<flagRunMe;
 flagRunMe = 0;

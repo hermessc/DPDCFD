@@ -19,8 +19,9 @@ if (TimeCounter == DPD_Sim_Every_X_Timestep) {
 	//while(g!=0)
 	forAll(mesh.C(), celli)	{
 		#include "initialSetup.H"
-		#include "runOnlyIfMissing.H"
+		//#include "runOnlyIfMissing.H"
 		#include "lammpsRun.H"
+		//MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 		#include "fakingIt.H"
 
 
@@ -34,4 +35,5 @@ if (TimeCounter == DPD_Sim_Every_X_Timestep) {
 TimeCounter = 0;
 MPI_Barrier(MPI_COMM_WORLD);
 }
-	MPI_Barrier(MPI_COMM_WORLD);
+
+	//MPI_Barrier(MPI_COMM_WORLD);

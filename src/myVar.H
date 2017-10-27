@@ -5,5 +5,19 @@ alcune variabili utilizzate nel codice, tra cui la lunghezza delle stringhe dell
 #include "string.h"
 int n;
 char line[1024];
-int storageMatrix[10][2] = {{0}};
+
 int flagRunMe = 0;
+/*double **storageMatrix;
+//storageMatrix = (double **)malloc(20*sizeof(double));
+
+storageMatrix = (double **)malloc(20*sizeof(double*));
+MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+MPI_Barrier(MPI_COMM_WORLD);
+*/
+int **storageMatrix;
+//storageMatrix = (double **)malloc(20*sizeof(double));
+
+storageMatrix = alloc_2d_int(10,2);
+//cout<<"STO QUA";
+//MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+//MPI_Barrier(MPI_COMM_WORLD);
