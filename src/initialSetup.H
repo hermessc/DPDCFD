@@ -35,7 +35,7 @@ char **lmparg = new char*[3];
   lmparg[0] = NULL;        
   lmparg[1] =   (char *) "-screen";
   lmparg[2] =   (char *) "none";
-if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(3,lmparg,comm_lammps);}
+if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
 
 
  sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
