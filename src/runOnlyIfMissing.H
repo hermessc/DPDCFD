@@ -20,10 +20,18 @@ for (int i=0;i<10;i++)
 		//cout << "sto sabotando tutto "<<storageMatrix[0][0];	
 	MPI_Barrier(MPI_COMM_WORLD);
 	}
+
+for(int b=0;b<10;b++){
+	for(int c= 0; c<2;c++) {
+		cout<<storageMatrix[b][c]<<" ";
+	}
+cout<<"\n";	
+}
+
 //flagRunMe = 1;
 //cout<<"FlagRunMe on proc "<<me<<"equal to "<<flagRunMe;
 //MPI_Bcast(&flagRunMe,1,MPI_INT,0,MPI_COMM_WORLD);
 //flagRunMe = 1;
-MPI_Barrier(MPI_COMM_WORLD);
+//MPI_Barrier(MPI_COMM_WORLD);
 
 

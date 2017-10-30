@@ -777,6 +777,7 @@ DPDictionary.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
 DPDCode.H \
 initialSetup.H \
+runOnlyIfMissing.H \
 lammpsRun.H \
 shearConverter.H \
 fakingIt.H \

@@ -21,3 +21,6 @@ storageMatrix = alloc_2d_int(10,2);
 //cout<<"STO QUA";
 //MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 //MPI_Barrier(MPI_COMM_WORLD);
+for(int b=0;b<10;b++)
+for(int c= 0; c<2;c++)
+	storageMatrix[b][c]=0;

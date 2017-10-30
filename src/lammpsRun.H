@@ -21,9 +21,9 @@ shearRate = mag(fvc::grad(U));
       //  std::sprintf(shearStr,"fix		shear all deform 1 xy erate ${srate} remap v flip yes units box",controlVariable);
 MPI_Barrier(MPI_COMM_WORLD);
 if (me == 0){
-	cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
+	//cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 //cout<<"proc num"<<me<<"\n";
-	if (flagRunMe == 0){
+	//if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
 		while (1) {
 			if (me == 0) {
@@ -41,17 +41,15 @@ if (me == 0){
 			else lmp->input->one(line);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
-		}
-				
+		}				
 	}
-	else
-	continue;	
-
-}
+	//else
+	//continue;	
+//}
 
 else {
 //cout<<"proc num"<<me<<"\n";
-	if (flagRunMe == 0){
+//	if (flagRunMe == 0){
 		cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 		while (1) {
 			if (me == 0) {
@@ -71,8 +69,9 @@ else {
 		//extract viscosity
 			}
 				
-	}
-	else
-	continue;
+//	}
+//	else if (flagRunMe == 1) { cout<<"FLAG 1 ";}
+	//continue;
 }
 
+MPI_Barrier(MPI_COMM_WORLD);

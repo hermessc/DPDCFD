@@ -1,0 +1,5 @@
+set -x
+cd ../poiseuilleflow
+./Allclean.sh
+./Allrun.sh
+cd ../src
