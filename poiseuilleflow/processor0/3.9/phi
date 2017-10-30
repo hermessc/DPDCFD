@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "3.9";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+-2.1594e-12
+0.0002
+2.80721e-12
+0.0002
+-5.50819e-12
+0.0002
+3.13936e-12
+-1.07708e-12
+0.000184
+7.17769e-13
+0.000184
+5.30768e-13
+0.000184
+-1.64195e-12
+0.000184
+-4.02761e-12
+-5.60035e-12
+0.000152
+2.74994e-12
+0.000152
+4.25482e-13
+0.000152
+-8.2595e-13
+0.000152
+-1.19546e-11
+-6.40795e-12
+0.000104
+2.97939e-12
+0.000104
+-2.54735e-13
+0.000104
+5.59226e-13
+0.000104
+-1.1481e-11
+-3.58861e-12
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary0to1
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+}
+
+
+// ************************************************************************* //

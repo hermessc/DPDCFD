@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "3.4";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+1.67589e-12
+0.0002
+-6.03442e-12
+0.0002
+7.07718e-12
+0.0002
+8.75175e-12
+2.86847e-12
+0.000184
+-4.34696e-12
+0.000184
+-3.38501e-12
+0.000184
+5.6704e-12
+0.000184
+2.58203e-11
+7.13009e-12
+0.000152
+-8.78783e-12
+0.000152
+-1.47307e-12
+0.000152
+4.55322e-12
+0.000152
+3.89396e-11
+9.01351e-12
+0.000104
+-8.83747e-12
+0.000104
+1.06686e-12
+0.000104
+1.64717e-12
+0.000104
+3.35186e-11
+6.34923e-12
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary0to1
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+}
+
+
+// ************************************************************************* //

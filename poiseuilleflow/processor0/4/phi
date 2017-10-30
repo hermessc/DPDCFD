@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "4";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+5.43757e-13
+0.0002
+-6.09479e-12
+0.0002
+-2.35319e-12
+0.0002
+-1.04175e-12
+2.15445e-12
+0.000184
+-5.95034e-13
+0.000184
+-5.39046e-12
+0.000184
+-4.83956e-12
+0.000184
+-2.14227e-12
+1.68884e-12
+0.000152
+-9.04968e-13
+0.000152
+-1.33493e-11
+0.000152
+-1.20517e-11
+0.000152
+-1.21874e-11
+-1.59796e-12
+0.000104
+-7.67839e-13
+0.000104
+-1.47969e-11
+0.000104
+-1.20588e-11
+0.000104
+-1.48038e-11
+-3.03698e-12
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary0to1
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+}
+
+
+// ************************************************************************* //

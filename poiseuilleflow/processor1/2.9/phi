@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "2.9";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+-1.80643e-11
+0.0002
+-2.33024e-11
+0.0002
+-3.14673e-11
+0.0002
+-5.12536e-11
+-2.45544e-11
+0.000184
+-3.74824e-11
+0.000184
+-3.0135e-11
+0.000184
+-4.99433e-11
+0.000184
+-8.53348e-11
+-5.10506e-11
+0.000152
+-4.9869e-11
+0.000152
+-2.92541e-11
+0.000152
+-5.40109e-11
+0.000152
+-1.06856e-10
+-6.34244e-11
+0.000104
+-4.33911e-11
+0.000104
+-1.83468e-11
+0.000104
+-3.93397e-11
+0.000104
+-8.81487e-11
+-5.12223e-11
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "2.5";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+1.16411e-11
+0.0002
+1.16926e-13
+0.0002
+-3.46072e-12
+0.0002
+-3.07181e-11
+-5.25473e-12
+0.000184
+1.47022e-11
+0.000184
+6.42414e-12
+0.000184
+-1.75874e-11
+0.000184
+-4.12175e-11
+-2.41457e-11
+0.000152
+2.32218e-11
+0.000152
+1.00868e-11
+0.000152
+-3.45313e-11
+0.000152
+-6.40529e-11
+-4.13609e-11
+0.000104
+2.01027e-11
+0.000104
+7.35693e-12
+0.000104
+-3.46555e-11
+0.000104
+-5.51414e-11
+-3.68791e-11
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+}
+
+
+// ************************************************************************* //

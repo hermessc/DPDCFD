@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "1.4";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.0002
+-1.54581e-11
+0.0002
+1.77588e-11
+0.0002
+1.32001e-11
+0.0002
+-8.37503e-12
+-6.65225e-12
+0.000184
+1.16003e-12
+0.000184
+9.25988e-12
+0.000184
+1.14238e-11
+0.000184
+9.28225e-12
+3.77842e-12
+0.000152
+1.76511e-11
+0.000152
+2.57224e-12
+0.000152
+1.26424e-11
+0.000152
+3.55644e-11
+1.77653e-11
+0.000104
+2.37729e-11
+0.000104
+-4.26862e-12
+0.000104
+7.83854e-12
+0.000104
+4.05118e-11
+2.06256e-11
+4e-05
+4e-05
+4e-05
+4e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(0.0002 0.000184 0.000152 0.000104 4e-05);
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(-0.0002 -0.000184 -0.000152 -0.000104 -4e-05);
+    }
+}
+
+
+// ************************************************************************* //

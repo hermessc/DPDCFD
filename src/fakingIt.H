@@ -15,7 +15,7 @@ MPI_Barrier(MPI_COMM_WORLD);
 	//cout<< *array_val;
 	double viscosity = *array_val;
  	//cout<<viscosity;
-	
+			viscoDPD[celli] =viscosity ;
 storageMatrix[0][0] = 1.0;
 //cout<<storageMatrix[0][0];
 //cout<<flagRunMe;

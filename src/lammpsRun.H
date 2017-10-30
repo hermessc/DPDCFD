@@ -16,14 +16,14 @@
 shearRate = mag(fvc::grad(U)); 
 //cout<<"Prima di lammps";
 #include "shearConverter.H"
-
+int counter = 0;
 //cout<<"Dopo shearConverter";
       //  std::sprintf(shearStr,"fix		shear all deform 1 xy erate ${srate} remap v flip yes units box",controlVariable);
 MPI_Barrier(MPI_COMM_WORLD);
-if (me == 0){
-	cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
+//if (me == 0){
+//	cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 //cout<<"proc num"<<me<<"\n";
-	if (flagRunMe == 0){
+	//if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
 		while (1) {
 			if (me == 0) {
@@ -35,23 +35,29 @@ if (me == 0){
 			if (n == 0) break;
 			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
 			std::string controlstr(line);
-			if (controlstr == "#shear\n") {
-				if (lammps == 1) lmp->input->one(controlShear);
+			//cout<<line<<checkStr;
+			if (strcmp(line,checkStr) == 0 ) {//if (counter == 84){
+			MPI_Bcast(&counter, 1, MPI_INT,0,MPI_COMM_WORLD);			
+				cout<<"Check was fine";
+				MPI_Bcast(controlShear,n-1,MPI_CHAR,0,MPI_COMM_WORLD);
+				lmp->input->one(controlShear);
 				}
 			else lmp->input->one(line);
+			counter++;
+			MPI_Bcast(&counter,1,MPI_INT,0,MPI_COMM_WORLD);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 		}
 				
-	}
-	else
-	continue;	
+	//}
+	//else
+	//continue;	
 
-}
-
+//}
+/*
 else {
 //cout<<"proc num"<<me<<"\n";
-	if (flagRunMe == 0){
+	//if (flagRunMe == 0){
 		cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 		while (1) {
 			if (me == 0) {
@@ -62,17 +68,21 @@ else {
 			MPI_Bcast(&n,1,MPI_INT,0,MPI_COMM_WORLD);
 			if (n == 0) break;
 			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
+			cout<<line;
 			std::string controlstr(line);
-			if (controlstr == "#shear\n") {
-				if (lammps == 1) lmp->input->one(controlShear);
+			if (strcmp(line,checkStr)== 0) {
+			//	return 1;
+				//	cout<<controlShear;
+				MPI_Bcast(controlShear,n-1,MPI_CHAR,0,MPI_COMM_WORLD);
+			 	lmp->input->one(controlShear);
 				}
 			else lmp->input->one(line);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 			}
 				
-	}
-	else
-	continue;
+	//}
+	//else
+	//continue;
 }
-
+*/
