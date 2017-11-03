@@ -16,13 +16,13 @@ FoamFile
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 101;
+internalField   uniform 0;
 
 boundaryField
 {
     top
     {
-	type 		zeroGradient;
+	type 		symmetry;
     }
 
     bottom
