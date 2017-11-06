@@ -16,13 +16,13 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0.0006 0.0006 0.0006);
+internalField   uniform (0.00 0.00 0.00);
 
 boundaryField
 {
      top
     {
-	type  	symmetry;
+	type  	slip;
     }
     bottom
     {
@@ -32,8 +32,8 @@ boundaryField
     {
 	type 		rotatingWallVelocity; 
 	origin	 	(0 0 0);
-	axis 		(1 0 0);
-	omega 		140;
+	axis 		(0 1 0);
+	omega 		1.40;
     }
     wall
     {
@@ -44,7 +44,7 @@ boundaryField
     }
     frontAndBack
     {
-        type            empty;
+        type            slip;
     }
 }
 // ************************************************************************* //

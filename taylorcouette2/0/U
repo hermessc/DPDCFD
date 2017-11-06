@@ -33,7 +33,7 @@ boundaryField
 	type 		rotatingWallVelocity; 
 	origin	 	(0 0 0);
 	axis 		(0 0 1);
-	omega 		0.14;
+	omega 		1.4;
     }
      
     wall
@@ -50,7 +50,7 @@ boundaryField
     
     edges
     {
-        type            slip;
+        type            symmetry;
     }
 }
 // ************************************************************************* //

@@ -22,12 +22,12 @@ boundaryField
 {
     top
     {
-	type 		zeroGradient;
+	type 		symmetry;
     }
 
     bottom
     {
-	type 		zeroGradient;
+	type 		symmetry;
     }
 
     rotatingWall

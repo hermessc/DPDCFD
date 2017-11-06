@@ -22,7 +22,7 @@ boundaryField
 {
     top
     {
-	type 		symmetry;
+	type 		zeroGradient;
     }
 
     bottom
@@ -41,7 +41,7 @@ boundaryField
     }
     frontAndBack
     {
-        type            empty;
+        type            zeroGradient;
     }
 }
 

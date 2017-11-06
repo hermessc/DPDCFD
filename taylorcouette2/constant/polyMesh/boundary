@@ -21,33 +21,34 @@ FoamFile
     {
         type            patch;
         nFaces          784;
-        startFace       1147216;
+        startFace       458416;
     }
     bottom
     {
         type            wall;
         inGroups        1(wall);
         nFaces          784;
-        startFace       1148000;
+        startFace       459200;
     }
     rotatingWall
     {
         type            patch;
-        nFaces          14000;
-        startFace       1148784;
+        nFaces          5600;
+        startFace       459984;
     }
     edges
     {
-        type            patch;
-        nFaces          28000;
-        startFace       1162784;
+        type            symmetry;
+        inGroups        1(symmetry);
+        nFaces          11200;
+        startFace       465584;
     }
     wall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          14000;
-        startFace       1190784;
+        nFaces          5600;
+        startFace       476784;
     }
 )
 

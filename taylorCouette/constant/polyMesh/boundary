@@ -19,37 +19,35 @@ FoamFile
 (
     top
     {
-        type            symmetry;
-        inGroups        1(symmetry);
-        nFaces          14;
-        startFace       2686;
+        type            patch;
+        nFaces          140;
+        startFace       19660;
     }
     bottom
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          14;
-        startFace       2700;
+        nFaces          140;
+        startFace       19800;
     }
     rotatingWall
     {
         type            patch;
-        nFaces          100;
-        startFace       2714;
+        nFaces          500;
+        startFace       19940;
     }
     wall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          100;
-        startFace       2814;
+        nFaces          500;
+        startFace       20440;
     }
     frontAndBack
     {
-        type            empty;
-        inGroups        1(empty);
-        nFaces          2800;
-        startFace       2914;
+        type            patch;
+        nFaces          1400;
+        startFace       20940;
     }
 )
 
