@@ -6,7 +6,7 @@ alcune variabili utilizzate nel codice, tra cui la lunghezza delle stringhe dell
 int n;
 char line[1024];
 
-int flagRunMe = 0;
+//int flagRunMe = 0;
 /*double **storageMatrix;
 //storageMatrix = (double **)malloc(20*sizeof(double));
 

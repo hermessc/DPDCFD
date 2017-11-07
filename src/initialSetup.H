@@ -31,29 +31,8 @@ MPI_Comm comm_lammps;  //set up new comm protocol for lammps
 int lammps  = 1;   //check to confirm lammps is running on me
 MPI_Comm_split(MPI_COMM_WORLD,lammps,0,&comm_lammps);
 LAMMPS_NS::LAMMPS *lmp;
-char **lmparg = new char*[3];
-  lmparg[0] = NULL;        
-  //lmparg[1] =   (char *) "-screen";
-  //lmparg[2] =   (char *) "none";
-if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
+int flagRunMe = 0;
 
-if (flagRunMe == 0){
- sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
-    		if (sp == NULL)
-		{
-			printf("ERROR: Could not open LAMMPS input script\n");
-      			MPI_Abort(MPI_COMM_WORLD,1);
-    		}
-}
-else 
-{
- sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.skip","r");
-    		if (sp == NULL)
-		{
-			printf("ERROR: Could not open LAMMPS input script\n");
-      			MPI_Abort(MPI_COMM_WORLD,1);
-    		}
-}
 
 //MPI_Bcast(&(storageMatrix[0][0]), 10*2, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 //MPI_Barrier(MPI_COMM_WORLD);

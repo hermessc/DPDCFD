@@ -1,1 +1,96 @@
-print "I am not doing ANYTHING" screen yes
+   
+units		lj													
+variable        ndim  	equal 	3										
+
+
+variable        xsize 		equal 	20									
+variable        ysize 		equal 	20									
+variable        zsize 		equal 	40
+variable	rhop		equal	3
+variable	plurchain	equal   15
+variable	npart		equal	(${xsize}*${ysize}*${zsize})*${rhop}
+variable	percn		equal	0.00
+variable 	wBeads		equal	(1-${percn})*${npart}
+variable        plBeads		equal   ${percn}*${npart}/${plurchain}
+
+variable 	kb 	equal	1.0						
+variable 	T 	equal 	1.0
+
+
+variable        cutoff  equal 	1.0																			
+
+variable        gamma   equal 	4.5 		
+
+#variable adjustTime equal 2*0.01*${cutoff}/(${srate}*${ysize})																
+timestep	0.01												
+
+dimension       3
+
+atom_style      hybrid bond dpd
+boundary        p p p
+comm_modify 	vel yes cutoff 5
+
+
+lattice		none 1
+region		mybox prism 0 ${xsize}  0 ${ysize} 0 ${zsize} 0 0 0  
+create_box      3 mybox bond/types 3 extra/bond/per/atom 1
+
+
+molecule polymer molecule.txt 
+
+
+create_atoms 1 random ${wBeads}  123445 NULL
+create_atoms 1 random ${plBeads} 14567  NULL  mol polymer 100766
+
+group water   type 1
+group polymer type 3
+
+set group water type 1
+ 
+mass * 1.0
+
+
+neighbor 	1.0 	bin
+neigh_modify 	delay 0 every 6 check no
+
+
+bond_style      fene
+bond_coeff  	1 		80.0 			1.0 0.0 0.0
+bond_coeff	2		80.0			1.0 0.0 0.0
+bond_coeff      3               80.0                    1.0 0.0 0.0
+pair_style      dpd ${T} ${cutoff} 928948
+
+pair_coeff     	 1 1 	25.0  		${gamma}	 	 
+pair_coeff     	 1 2 	26.05 		${gamma}
+pair_coeff     	 2 2 	25.0 		${gamma} 		 
+pair_coeff     	 1 3 	54.37 		${gamma}
+pair_coeff     	 2 3  	66.96 		${gamma}
+pair_coeff       3 3  	25.0 		${gamma}		 
+
+thermo		1000
+
+#minimize 	1.0e-5 1.0e-7 1000 10000
+
+log		none
+variable 	srate equal 0.1
+variable	velramp equal ${srate}*${ysize}
+#velocity	all ramp vx 0 ${velramp} y 0 ${ysize}
+
+#compute 	cc1 all chunk/atom bin/1d y center 0.01 units reduced
+dump 		first  polymer xyz 500 video.xyz
+  
+fix	 	1 all nve
+#run     	10
+velocity	all ramp vx 0 ${velramp} y 0 ${ysize}
+#shear
+variable	visc equal -pxy/(v_srate)
+fix		vave all ave/time 10 100 1000 v_visc ave running start 000
+#dump 		dumpnew polymer xyz 200 video.xyz
+thermo_style	custom step temp press pxy v_visc f_vave
+timestep	0.005
+run		0
+
+#timestep 	0.01
+#unfix 		shear
+#run		300000
+#############################

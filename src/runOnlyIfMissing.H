@@ -7,7 +7,7 @@ creazione di una matrice di storage che conserva i valori di shear già trovati 
 3) se positivo, il flag cambia valore e la viscosità della cella viene semplicemente letta
 4) proc sincro
 */
-flagRunMe = 0;
+//flagRunMe = 0;
 for (int i=0;i<10;i++)
 	{
 	if(std::round(shearRate[celli]) == storageMatrix[i][0])
@@ -27,6 +27,38 @@ for(int b=0;b<10;b++){
 	}
 cout<<"\n";	
 }
+
+if (me == 0) {
+	flagRunMe = 0;
+}
+
+else (flagRunMe = 1);
+
+cout<<"VALUE OF FLAG: "<<flagRunMe;
+
+char **lmparg = new char*[3];
+  lmparg[0] = NULL;        
+  //lmparg[1] =   (char *) "-screen";
+  //lmparg[2] =   (char *) "none";
+if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
+
+FILE *lp;
+
+
+ sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
+    		if (sp == NULL)
+		{
+			printf("ERROR: Could not open LAMMPS input script\n");
+      			MPI_Abort(MPI_COMM_WORLD,1);
+    		}
+
+
+ lp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.skip","r");
+    		if (lp == NULL)
+		{
+			printf("ERROR: Could not open LAMMPS input script\n");
+      			MPI_Abort(MPI_COMM_WORLD,1);
+    		}
 
 //flagRunMe = 1;
 //cout<<"FlagRunMe on proc "<<me<<"equal to "<<flagRunMe;
