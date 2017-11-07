@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "1.1";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.00020171
+1.05558e-09
+0.000201713
+-2.45185e-09
+0.000201711
+1.30403e-09
+0.00020175
+-3.85462e-08
+-1.4656e-07
+0.000185573
+2.70952e-09
+0.000185576
+-6.03607e-09
+0.000185571
+6.96098e-09
+0.0001856
+-6.80408e-08
+-9.63031e-08
+0.0001533
+3.28316e-09
+0.000153301
+-7.08279e-09
+0.000153298
+1.03353e-08
+0.000153288
+-5.85871e-08
+-1.63591e-08
+0.000104891
+2.08773e-09
+0.000104888
+-4.33929e-09
+0.000104891
+7.27469e-09
+0.000104859
+-2.69264e-08
+1.57222e-08
+4.03438e-05
+4.03395e-05
+4.03467e-05
+4.03198e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(-0.000201711 -0.000185575 -0.000153301 -0.00010489 -4.03417e-05);
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary0to1
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(0.000201896 0.00018555 0.000153208 0.000104827 4.03355e-05);
+    }
+}
+
+
+// ************************************************************************* //

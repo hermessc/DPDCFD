@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       surfaceScalarField;
+    location    "0.2";
+    object      phi;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 3 -1 0 0 0 0];
+
+internalField   nonuniform List<scalar> 
+40
+(
+0.000207179
+-4.91439e-06
+0.000212469
+-5.28947e-06
+0.00021314
+-6.70857e-07
+0.000213207
+-6.76409e-08
+-3.98421e-07
+0.000183813
+-2.84526e-06
+0.000181765
+-3.24113e-06
+0.000181636
+-5.42116e-07
+0.000181687
+-1.18241e-07
+-2.76022e-07
+0.000151959
+-1.33256e-06
+0.000150326
+-1.60739e-06
+0.00015007
+-2.86479e-07
+0.000150033
+-8.1266e-08
+-1.4773e-07
+0.000104028
+-3.63846e-07
+0.000102889
+-4.67994e-07
+0.00010268
+-7.71401e-08
+0.000102623
+-2.40762e-08
+-5.11356e-08
+4.00305e-05
+3.95625e-05
+3.94854e-05
+3.94613e-05
+)
+;
+
+boundaryField
+{
+    top
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+    bottom
+    {
+        type            symmetryPlane;
+        value           uniform 0;
+    }
+    inlet
+    {
+        type            calculated;
+        value           nonuniform 0();
+    }
+    outlet
+    {
+        type            calculated;
+        value           nonuniform List<scalar> 5(0.000213606 0.000181564 0.000149905 0.000102526 3.94101e-05);
+    }
+    frontAndBack
+    {
+        type            empty;
+        value           nonuniform 0();
+    }
+    procBoundary1to0
+    {
+        type            processor;
+        value           nonuniform List<scalar> 5(-0.000202265 -0.000185882 -0.000153472 -0.000104997 -4.03943e-05);
+    }
+}
+
+
+// ************************************************************************* //

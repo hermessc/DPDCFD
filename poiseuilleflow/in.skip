@@ -3,11 +3,12 @@ units		lj
 variable        ndim  	equal 	3										
 
 
-variable        xsize 		equal 	20									
-variable        ysize 		equal 	20									
+variable        xsize 		equal 	40									
+variable        ysize 		equal 	40									
 variable        zsize 		equal 	40
 variable	rhop		equal	3
 variable	plurchain	equal   15
+run     	10
 variable	npart		equal	(${xsize}*${ysize}*${zsize})*${rhop}
 variable	percn		equal	0.00
 variable 	wBeads		equal	(1-${percn})*${npart}
