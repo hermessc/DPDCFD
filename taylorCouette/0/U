@@ -22,18 +22,18 @@ boundaryField
 {
      top
     {
-	type  	slip;
+	type  	symmetry;
     }
     bottom
     {
-	type  	noSlip;
+	type  	symmetry;
     }
      rotatingWall
     {
 	type 		rotatingWallVelocity; 
 	origin	 	(0 0 0);
 	axis 		(0 1 0);
-	omega 		1.40;
+	omega 		1;
     }
     wall
     {
@@ -42,9 +42,13 @@ boundaryField
         axis            ( 0 1 0 );
         omega           0; // rad/s
     }
-    frontAndBack
+    front
     {
-        type            slip;
+        type            cyclic;
+    } 
+back
+    {
+        type            cyclic;
     }
 }
 // ************************************************************************* //
