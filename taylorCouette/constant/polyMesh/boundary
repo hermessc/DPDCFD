@@ -21,35 +21,35 @@ FoamFile
     {
         type            symmetry;
         inGroups        1(symmetry);
-        nFaces          8;
-        startFace       322;
+        nFaces          10;
+        startFace       332;
     }
     bottom
     {
         type            symmetry;
         inGroups        1(symmetry);
-        nFaces          8;
-        startFace       330;
+        nFaces          10;
+        startFace       342;
     }
     rotatingWall
     {
         type            patch;
-        nFaces          22;
-        startFace       338;
+        nFaces          18;
+        startFace       352;
     }
     wall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          22;
-        startFace       360;
+        nFaces          18;
+        startFace       370;
     }
     front
     {
         type            cyclic;
         inGroups        1(cyclic);
-        nFaces          176;
-        startFace       382;
+        nFaces          180;
+        startFace       388;
         matchTolerance  0.0001;
         transform       rotational;
         neighbourPatch  back;
@@ -60,8 +60,8 @@ FoamFile
     {
         type            cyclic;
         inGroups        1(cyclic);
-        nFaces          176;
-        startFace       558;
+        nFaces          180;
+        startFace       568;
         matchTolerance  0.0001;
         transform       rotational;
         neighbourPatch  front;
