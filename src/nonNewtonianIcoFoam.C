@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
 	//H
 	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
+   double bigM[rows][2] = {{0.0}};
     #include "initialSetup.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -64,40 +65,44 @@ int main(int argc, char *argv[])
 
     while (runTime.loop())
     {
-        Info<< "Time = " << runTime.timeName() << nl << endl;
+
+        
+	Info<< "Time = " << runTime.timeName() << nl << endl;
         #include "CourantNo.H"
 	fluid.correct();
 	shearRate = mag(fvc::grad(U)); 
 
 	forAll(mesh.C(),celli) {	
 	#include "shearConverter.H"	
-	//cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
+	cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
 	}
+
+
+/*
 for(int i = 0; i < rows; i++) {
 		for(int j = 0; j < 2 ; j++ ) {
 		cout<<" "<<bigM[i][j]<<" ";
 		}
 		cout<<"\n";
-	}
+	}*/
 //	MPI_Barrier(MPI_COMM_WORLD);
-	if(me == 0){
-			forAll(mesh.C(),celli) {
-
-			    for(int b = 0; b < rows; b++) {
-				//cout<<"CIAO";
+	if (TimeCounter == DPD_Sim_Every_X_Timestep) {		
+		//shearRate = mag(fvc::grad(U)); 
+		forAll(mesh.C(),celli) {
+			for(int b = 0; b < rows; b++) {
 				if (bigM[b][0] == 0) {
 				//MPI_Bcast(&bigM[j][0], 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-				bigM[b][0] = shearRate[celli];
-				cout<<shearRate[celli];
-				//cout<<"we are here";			
-				}
-		    	}
+				bigM[b][0] = std::round(shearRate[celli]);
+				break;			
+			}
+		} 
+		
 		}
 	}
 	//MPI_Barrier(MPI_COMM_WORLD);
 	
 	
-
+/*
 	for(int i = 0; i < rows; i++) {
 		for(int j = 0; j < 2 ; j++ ) {
 		cout<<" "<<bigM[i][j]<<" ";
@@ -105,7 +110,7 @@ for(int i = 0; i < rows; i++) {
 		cout<<"\n";
 	}
 
-
+*/
 	/* REMOVE COMMENTS TO ENABLE LAMMPS	
 	for (int i=0; i< 5; i++) { 
 	MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
@@ -204,7 +209,7 @@ for(int i = 0; i < rows; i++) {
 	TimeCounter++; 	
 	cout<<TimeCounter<<"\n\n\n\n";        
 	runTime.write();
-
+	//delete[] bigM;
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;
