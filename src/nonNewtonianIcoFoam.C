@@ -52,10 +52,10 @@ int main(int argc, char *argv[])
     #include "createControl.H"
     #include "createFields.H"
     #include "initContinuityErrs.H"
+    #include "DPDictionary.H"
 	//H
 	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
-    #include "DPDictionary.H"
     #include "initialSetup.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -71,18 +71,31 @@ int main(int argc, char *argv[])
 
 	forAll(mesh.C(),celli) {	
 	#include "shearConverter.H"	
-	cout<<shearRate[celli];
+	cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
 	}
-	//if (me == 0) {
-		
-		for (int i=0; i< 5; i++) { 
-		MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
 
-		#include "lammpsRun.H"	
+	if (me == 0)
+	{
+		
+	}
+	
+	/* REMOVE COMMENTS TO ENABLE LAMMPS	
+	for (int i=0; i< 5; i++) { 
+	MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
+	#include "lammpsRun.H"	
 		
 		//MPI_Barrier(MPI_COMM_WORLD);
 		}
-	//}
+	*/
+
+
+
+
+
+
+
+
+
 //H
 // parte che contiene tutto quello che serve per far partire le simulazioni di lammps prima del calcolo del campo di velocità
 	//FILE *sp; // open LAMMPS input script

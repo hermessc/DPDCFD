@@ -772,12 +772,11 @@ $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createSimpleControl.H \
 createFields.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createPhi.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H \
-myVar.H \
 DPDictionary.H \
+myVar.H \
 initialSetup.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
 shearConverter.H \
-lammpsRun.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
 
 

@@ -15,6 +15,8 @@ IOdictionary DPDParameters
 //Some examples
 
 scalar DPD_Sim_Every_X_Timestep      = readScalar(DPDParameters.subDict("Simulation").lookup("DPD_Sim_Every_X_Timestep"));
+scalar nSplits = readScalar(DPDParameters.subDict("Simulation").lookup("nSplits")); 
+scalar nCells	= readScalar(DPDParameters.subDict("Simulation").lookup("nCells"));
 
 
 
