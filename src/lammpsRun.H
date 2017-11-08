@@ -36,7 +36,7 @@ char **lmparg = new char*[3];
 if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
 
 FILE *sp;
- sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
+sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
     		if (sp == NULL)
 		{
 			printf("ERROR: Could not open LAMMPS input script\n");
