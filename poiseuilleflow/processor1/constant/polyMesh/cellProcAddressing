@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.2.2                                 |
+|  \\    /   O peration     | Version:  5.0                                   |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -9,21 +9,41 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    location    "constant";
-    object      DPDParameters;
+    class       labelList;
+    location    "constant/polyMesh";
+    object      cellProcAddressing;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 
-
-Simulation
-{
-	DPD_Sim_Every_X_Timestep 100;      
-}
-
-// ************************************************************************* //
-
+25
+(
+5
+6
+7
+8
+9
+15
+16
+17
+18
+19
+25
+26
+27
+28
+29
+35
+36
+37
+38
+39
+45
+46
+47
+48
+49
+)
 
 
 // ************************************************************************* //

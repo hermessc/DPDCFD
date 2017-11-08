@@ -27,20 +27,4 @@ if (nprocs != numProcs) {
 }
 else Info<<"Using all "<<nprocs<<" for LAMMPS simulation"<<endl;
 
-MPI_Comm comm_lammps;  //set up new comm protocol for lammps
-int lammps  = 1;   //check to confirm lammps is running on me
-MPI_Comm_split(MPI_COMM_WORLD,lammps,0,&comm_lammps);
-LAMMPS_NS::LAMMPS *lmp;
-char **lmparg = new char*[3];
-  lmparg[0] = NULL;        
-  lmparg[1] =   (char *) "-screen";
-  lmparg[2] =   (char *) "none";
-if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
 
-
- sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
-    		if (sp == NULL)
-		{
-			printf("ERROR: Could not open LAMMPS input script\n");
-      			MPI_Abort(MPI_COMM_WORLD,1);
-    		}

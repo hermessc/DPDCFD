@@ -774,13 +774,10 @@ $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/createPhi.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/initContinuityErrs.H \
 myVar.H \
 DPDictionary.H \
-$(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
-DPDCode.H \
 initialSetup.H \
-runOnlyIfMissing.H \
-lammpsRun.H \
+$(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
 shearConverter.H \
-fakingIt.H \
+lammpsRun.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
 
 

@@ -17,13 +17,15 @@ MPI_Barrier(MPI_COMM_WORLD);
 
 if (TimeCounter == DPD_Sim_Every_X_Timestep) {		
 	//while(g!=0)
+
+	
 	forAll(mesh.C(), celli)	{
-		#include "initialSetup.H"
-		#include "runOnlyIfMissing.H"
+
+		//#include "runOnlyIfMissing.H"
 		#include "lammpsRun.H"
 		#include "fakingIt.H"
-		MPI_Barrier(MPI_COMM_WORLD);
-		viscoDPD[celli] =viscosity ;
+		//MPI_Barrier(MPI_COMM_WORLD);
+		viscoDPD[celli] = viscosity ;
 
 		cout<<"STARTING NEXT CELL";
 		//	g = 0;		

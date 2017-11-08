@@ -1,0 +1,10 @@
+C'è un bug.
+Solo metà del dominio viene risolto. Provare la seguente:
+
+1) dati i valori di shear, calcolare su ogni singolo processore (split domain) i valori indipentendi di shear arrotondato.
+2) Creare una matrice grande NumToTCelle, e riempita da ogni processore a pezzi.
+3) La matrice completa dovrà contenere tutti gli shear del sistema (send da ogni proc e rcv dal master)
+4) riordinare la matrice in modo da rimuovere shear ripetuti e sputare il numero di identità non ripetute. 
+
+5) Lanciare X simulazioni lammps, noti i valori di shear indipendenti e salvare le viscosità in una matrice
+6) in un ciclo forAll assegnare la viscosità agli shear

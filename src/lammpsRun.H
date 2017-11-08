@@ -13,20 +13,39 @@
 11) altrimenti si continua a leggere il file di input riga per riga. 
 12) se lo shear era già presente nella matrice di storage non serve effettuare una simulazione di lammps ma si può continuare con il calcolo cfd
 */
-shearRate = mag(fvc::grad(U)); 
+//shearRate = mag(fvc::grad(U)); 
 //cout<<"Prima di lammps";
-#include "shearConverter.H"
-int counter = 0;
+//#include "shearConverter.H"
+//int counter = 0;
+//MPI_Barrier(MPI_COMM_WORLD);
 //cout<<"Dopo shearConverter";
       //  std::sprintf(shearStr,"fix		shear all deform 1 xy erate ${srate} remap v flip yes units box",controlVariable);
-MPI_Barrier(MPI_COMM_WORLD);
-//if (me == 0){
-//	cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
+//MPI_Barrier(MPI_COMM_WORLD);
+	//cout<<"Runnin Lammps from proc: "<<me<<"\n\n";
 //cout<<"proc num"<<me<<"\n";
 	//if (flagRunMe == 0){
 //		cout<<"Dentro if\n\n";
+MPI_Comm comm_lammps;  //set up new comm protocol for lammps
+int lammps  = 1;   //check to confirm lammps is running on me
+MPI_Comm_split(MPI_COMM_WORLD,lammps,0,&comm_lammps);
+LAMMPS_NS::LAMMPS *lmp;
+char **lmparg = new char*[3];
+  lmparg[0] = NULL;        
+  lmparg[1] =   (char *) "-screen";
+  lmparg[2] =   (char *) "none";
+if (lammps == 1) {lmp = new LAMMPS_NS::LAMMPS(0,NULL,comm_lammps);}
+
+FILE *sp;
+ sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r");
+    		if (sp == NULL)
+		{
+			printf("ERROR: Could not open LAMMPS input script\n");
+      			MPI_Abort(MPI_COMM_WORLD,1);
+    		}
+
+
 		while (1) {
-			if (me == 0) {
+			 if (me == 0) {
 				if (fgets(line,1024,sp) == NULL) n = 0;
 				else n = strlen(line) + 1;
 				if (n == 0) fclose(sp);
@@ -34,17 +53,18 @@ MPI_Barrier(MPI_COMM_WORLD);
 			MPI_Bcast(&n,1,MPI_INT,0,MPI_COMM_WORLD);
 			if (n == 0) break;
 			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
+			//cout<<line;			
 			std::string controlstr(line);
 			//cout<<line<<checkStr;
-			if (strcmp(line,checkStr) == 0 ) {//if (counter == 84){
-			MPI_Bcast(&counter, 1, MPI_INT,0,MPI_COMM_WORLD);			
+			/*if (strcmp(line,checkStr) == 0 ) {//if (counter == 84){
+			//MPI_Bcast(&counter, 1, MPI_INT,0,MPI_COMM_WORLD);			
 				cout<<"Check was fine";
-				MPI_Bcast(controlShear,n-1,MPI_CHAR,0,MPI_COMM_WORLD);
+				MPI_Bcast(controlShear,n,MPI_CHAR,0,MPI_COMM_WORLD);
 				lmp->input->one(controlShear);
 				}
-			else lmp->input->one(line);
-			counter++;
-			MPI_Bcast(&counter,1,MPI_INT,0,MPI_COMM_WORLD);
+			else */lmp->input->one(line);
+			//counter++;
+			//MPI_Bcast(&counter,1,MPI_INT,0,MPI_COMM_WORLD);
 		//if (lammps == 1) lmp->input->one(line);
 		//extract viscosity
 		}
@@ -52,7 +72,7 @@ MPI_Barrier(MPI_COMM_WORLD);
 	//}
 	//else
 	//continue;	
-
+//MPI_Barrier(MPI_COMM_WORLD);
 //}
 /*
 else {
@@ -65,15 +85,15 @@ else {
 				else n = strlen(line) + 1;
 				if (n == 0) fclose(sp);
 				}
-			MPI_Bcast(&n,1,MPI_INT,0,MPI_COMM_WORLD);
+			MPI_Bcast(&n,1,MPI_INT,1,MPI_COMM_WORLD);
 			if (n == 0) break;
-			MPI_Bcast(line,n,MPI_CHAR,0,MPI_COMM_WORLD);
-			cout<<line;
+			MPI_Bcast(line,n,MPI_CHAR,1,MPI_COMM_WORLD);
+			//cout<<line;
 			std::string controlstr(line);
 			if (strcmp(line,checkStr)== 0) {
 			//	return 1;
 				//	cout<<controlShear;
-				MPI_Bcast(controlShear,n-1,MPI_CHAR,0,MPI_COMM_WORLD);
+				MPI_Bcast(controlShear,n,MPI_CHAR,1,MPI_COMM_WORLD);
 			 	lmp->input->one(controlShear);
 				}
 			else lmp->input->one(line);
@@ -84,5 +104,7 @@ else {
 	//}
 	//else
 	//continue;
-}
-*/
+}*/
+//MPI_Barrier(MPI_COMM_WORLD);
+
+delete lmp;

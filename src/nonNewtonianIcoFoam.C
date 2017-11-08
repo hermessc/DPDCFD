@@ -56,6 +56,7 @@ int main(int argc, char *argv[])
 	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
     #include "DPDictionary.H"
+    #include "initialSetup.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
     Info<< "\nStarting time loop\n" << endl;
@@ -66,16 +67,38 @@ int main(int argc, char *argv[])
         Info<< "Time = " << runTime.timeName() << nl << endl;
         #include "CourantNo.H"
 	fluid.correct();
+	shearRate = mag(fvc::grad(U)); 
 
+	forAll(mesh.C(),celli) {	
+	#include "shearConverter.H"	
+	cout<<shearRate[celli];
+	}
+	//if (me == 0) {
+		
+		for (int i=0; i< 5; i++) { 
+		MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
+
+		#include "lammpsRun.H"	
+		
+		//MPI_Barrier(MPI_COMM_WORLD);
+		}
+	//}
 //H
 // parte che contiene tutto quello che serve per far partire le simulazioni di lammps prima del calcolo del campo di velocità
-	FILE *sp; // open LAMMPS input script
+	//FILE *sp; // open LAMMPS input script
    //if (me == 0) 
   	//{
     
 	//}
 	//DPD simulation
-        #include "DPDCode.H"
+	//if (me == 0)
+        //{
+	//#include "DPDCode.H"
+	//}
+	//else
+	//{
+	//#include "DPDCode.H"
+	//}
 	//#include "viscosityMod.H"
         // Momentum predictor
 // fine
