@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.2.2                                 |
+|  \\    /   O peration     | Version:  5.0                                   |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,22 +10,20 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "constant";
-    object      DPDParameters;
+    location    "0.6/uniform";
+    object      time;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+value           0.600000000000000311;
 
+name            "0.6";
 
-Simulation
-{
-	DPD_Sim_Every_X_Timestep 10;
-	nSplits  2;
-	nCells 50;      
-}
+index           60;
 
-// ************************************************************************* //
+deltaT          0.01;
 
+deltaT0         0.01;
 
 
 // ************************************************************************* //

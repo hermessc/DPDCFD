@@ -86,31 +86,47 @@ for(int i = 0; i < rows; i++) {
 		cout<<"\n";
 	}*/
 //	MPI_Barrier(MPI_COMM_WORLD);
+
+//Step 1: Creazione prima matrice di accumulo shear //
 	if (TimeCounter == DPD_Sim_Every_X_Timestep) {		
 		//shearRate = mag(fvc::grad(U)); 
 		forAll(mesh.C(),celli) {
-			for(int b = 0; b < rows; b++) {
+			for(int b = 0; b < int(rows/nSplits); b++) {
 				if (bigM[b][0] == 0) {
 				//MPI_Bcast(&bigM[j][0], 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 				bigM[b][0] = std::round(shearRate[celli]);
+				MPI_Bcast(&bigM[b][0], 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 				break;			
 			}
 		} 
 		
 		}
 	}
+
+//Step 2 rimozione valori doppi e sorting delle matrici:
+
+
+/* 
+
+Insert Here
+
+*/ 
+
+
+//
 	//MPI_Barrier(MPI_COMM_WORLD);
 	
 	
-/*
-	for(int i = 0; i < rows; i++) {
+//CheckPoint: stampa valorI
+	for(int i = 0; i < int(rows/nSplits); i++) {
 		for(int j = 0; j < 2 ; j++ ) {
 		cout<<" "<<bigM[i][j]<<" ";
 		}
 		cout<<"\n";
 	}
 
-*/
+
+//Step 4: Running lammps
 	/* REMOVE COMMENTS TO ENABLE LAMMPS	
 	for (int i=0; i< 5; i++) { 
 	MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
