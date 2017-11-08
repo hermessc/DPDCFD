@@ -76,9 +76,17 @@ int main(int argc, char *argv[])
 
 	if (me == 0)
 	{
-		
+		for (int i = 0; i < int(nCells/nSplits); i++) {
+		    for(int j = 0; j = rows; j++) {
+			if (bigM[j][0] == 0) {
+			bigM[j][0] = shearRate[i];
+			}
+		    }
+		}
 	}
-	
+	for(int i=0;i<rows;i++){
+		for(int j=0;j<2;j++) {cout<<" "<<bigM[i][j]<<" ";}
+		cout<<"\n";}
 	/* REMOVE COMMENTS TO ENABLE LAMMPS	
 	for (int i=0; i< 5; i++) { 
 	MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
