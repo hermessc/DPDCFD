@@ -7,3 +7,11 @@ TO BE FIXED:
 	verificare il salvataggio/correzione dei valori precedenti
 - check if proc1 results are sent to proc1 OF
 - Bisogna sistemare bene i barrier
+
+
+
+reworked:
+
+aggiungere lo shear diverso nelle diverse simulazioni lammps.
+aggiungere un miner per l'assegnazione della viscosità alla matrice
+aggiungere un ciclo di matching cella -> viscosità

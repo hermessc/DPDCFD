@@ -93,7 +93,7 @@ for(int i = 0; i < rows; i++) {
 	if (TimeCounter == DPD_Sim_Every_X_Timestep) {			
 		#include "crawler.H"
 		#include "runner.H"
-		#include "splitter.H"
+		#include "miner.H"
 		#include "controller.H"
 		#include "cleaner.H"
 	//MPI_Barrier(MPI_COMM_WORLD);
