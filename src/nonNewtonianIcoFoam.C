@@ -57,6 +57,9 @@ int main(int argc, char *argv[])
 	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
    double bigM[rows][2] = {{0.0}};
+   double cutter[rows] = {0.0};
+
+
     #include "initialSetup.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -74,7 +77,7 @@ int main(int argc, char *argv[])
 
 	forAll(mesh.C(),celli) {	
 	#include "shearConverter.H"	
-	cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
+	//cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
 	}
 
 
@@ -88,35 +91,11 @@ for(int i = 0; i < rows; i++) {
 //	MPI_Barrier(MPI_COMM_WORLD);
 
 //Step 1: Creazione prima matrice di accumulo shear //
-	if (TimeCounter == DPD_Sim_Every_X_Timestep) {		
-		//shearRate = mag(fvc::grad(U)); 
-		forAll(mesh.C(),celli) {
-			for(int b = 0; b < int(rows/nSplits); b++) {
-				if (bigM[b][0] == 0) {
-				//MPI_Bcast(&bigM[j][0], 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-				bigM[b][0] = std::round(shearRate[celli]);
-				MPI_Bcast(&bigM[b][0], 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
-				break;			
-			}
-		} 
-		
-		}
-	}
-
-//Step 2 rimozione valori doppi e sorting delle matrici:
-
-
-/* 
-
-Insert Here
-
-*/ 
-
-
+	#include "crawler.H"
 //
 	//MPI_Barrier(MPI_COMM_WORLD);
 	
-	
+/*	
 //CheckPoint: stampa valorI
 	for(int i = 0; i < int(rows/nSplits); i++) {
 		for(int j = 0; j < 2 ; j++ ) {
@@ -124,7 +103,7 @@ Insert Here
 		}
 		cout<<"\n";
 	}
-
+*/
 
 //Step 4: Running lammps
 	/* REMOVE COMMENTS TO ENABLE LAMMPS	
@@ -218,7 +197,14 @@ Insert Here
 
             U = HbyA - rAU*fvc::grad(p);
             U.correctBoundaryConditions();
-	       
+//Final step:
+//Clean the matrix, clean the cutter
+/*
+
+*/
+		for (int i = 0; i< rows; i++){
+			cutter[i] = 0.0;      
+	 	}
 	}
 	//H
 	//variabile che conta il numero di timestep che sono passati nel calcolo cfd
