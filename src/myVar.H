@@ -11,4 +11,6 @@ char checkStr[1024] ="#fix		shear all deform 1 xy erate ${srate} remap v flip ye
 int rows = nCells;
 
 cout<<"rows:: "<< rows;
+double bigM[rows][2] = {{0.0}};
+double cutter[rows] = {0.0};
 

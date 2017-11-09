@@ -56,8 +56,7 @@ int main(int argc, char *argv[])
 	//H
 	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
-   double bigM[rows][2] = {{0.0}};
-   double cutter[rows] = {0.0};
+  
 
 
     #include "initialSetup.H"
@@ -91,57 +90,17 @@ for(int i = 0; i < rows; i++) {
 //	MPI_Barrier(MPI_COMM_WORLD);
 
 //Step 1: Creazione prima matrice di accumulo shear //
-	#include "crawler.H"
-//
+	if (TimeCounter == DPD_Sim_Every_X_Timestep) {			
+		#include "crawler.H"
+		#include "runner.H"
+		#include "splitter.H"
+		#include "controller.H"
+		#include "cleaner.H"
 	//MPI_Barrier(MPI_COMM_WORLD);
-	
-/*	
-//CheckPoint: stampa valorI
-	for(int i = 0; i < int(rows/nSplits); i++) {
-		for(int j = 0; j < 2 ; j++ ) {
-		cout<<" "<<bigM[i][j]<<" ";
-		}
-		cout<<"\n";
 	}
-*/
 
-//Step 4: Running lammps
-	/* REMOVE COMMENTS TO ENABLE LAMMPS	
-	for (int i=0; i< 5; i++) { 
-	MPI_Bcast(&i,1,MPI_INT,0,MPI_COMM_WORLD);
-	#include "lammpsRun.H"	
-		
-		//MPI_Barrier(MPI_COMM_WORLD);
-		}
-	*/
-
-
-
-
-
-
-
-
-
-//H
-// parte che contiene tutto quello che serve per far partire le simulazioni di lammps prima del calcolo del campo di velocità
-	//FILE *sp; // open LAMMPS input script
-   //if (me == 0) 
-  	//{
-    
-	//}
-	//DPD simulation
-	//if (me == 0)
-        //{
-	//#include "DPDCode.H"
-	//}
-	//else
-	//{
-	//#include "DPDCode.H"
-	//}
-	//#include "viscosityMod.H"
         // Momentum predictor
-// fine
+
 
         fvVectorMatrix UEqn
         (
@@ -201,10 +160,8 @@ for(int i = 0; i < rows; i++) {
 //Clean the matrix, clean the cutter
 /*
 
-*/
-		for (int i = 0; i< rows; i++){
-			cutter[i] = 0.0;      
-	 	}
+*/	    #include "flush.H"
+		
 	}
 	//H
 	//variabile che conta il numero di timestep che sono passati nel calcolo cfd

@@ -1,4 +1,4 @@
-	if (TimeCounter == DPD_Sim_Every_X_Timestep) {		
+
 		//shearRate = mag(fvc::grad(U)); 
 		forAll(mesh.C(),celli) {
 			for(int b = 0; b < int(rows/nSplits); b++) {
@@ -36,8 +36,8 @@
         	   MPI_COMM_WORLD);
 	
 	MPI_Bcast(&total_length,1,MPI_INT,0,MPI_COMM_WORLD);
-	cutter_length=0;
+
 
 	cout<<"The value of total length is   "<<total_length<<"\n\n\n\n\n";
-	TimeCounter =0;	
-	}
+
+	
