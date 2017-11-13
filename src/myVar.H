@@ -9,8 +9,10 @@ int storageMatrix[10][2] = {{0}};
 int flagRunMe = 0;
 char checkStr[1024] ="#fix		shear all deform 1 xy erate ${srate} remap v flip yes units box\n";
 int rows = nCells;
-
+int procs = nSplits;
 cout<<"rows:: "<< rows;
 double bigM[rows][2] = {{0.0}};
-double cutter[rows] = {0.0};
+int cutter[rows] = {0};
+
+int cells_per_proc = nCells/nSplits;
 

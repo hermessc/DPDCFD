@@ -28,7 +28,7 @@
 		}
 	
 
-	cout<<"The value of l is:     "<< cutter_length<<"\n\n\n\n\n\n\n";
+//	cout<<"The value of l is:     "<< cutter_length<<"\n\n\n\n\n\n\n";
 
 
 	int total_length = 0;
@@ -36,8 +36,67 @@
         	   MPI_COMM_WORLD);
 	
 	MPI_Bcast(&total_length,1,MPI_INT,0,MPI_COMM_WORLD);
+//float *big_m_clone = NULL;
+  //big_m_clone = malloc(sizeof(float) * cutter[rows]);
 
+int	big_m_clone[100] = {0};
 
-	cout<<"The value of total length is   "<<total_length<<"\n\n\n\n\n";
+	MPI_Allgather(&cutter,cutter_length,MPI_INT,&big_m_clone,25,MPI_INT,MPI_COMM_WORLD);				
+	//MPI_Barrier(MPI_COMM_WORLD);
+	
+
+ 		//   printf("Process 1 received number %d from process 0\n",
+           //number);
+		
+//	cout<<"The value of total length is   "<<total_length<<"\n\n\n\n\n";
 
 	
+
+//step 3 creare una matrice unica che raccoglie i valori degli shear
+
+/*
+float big_m_clone[rows][2] ={{0.0}};
+
+
+
+	for ( int j = (me*cells_per_proc); j< ((me+1)*cells_per_proc); j++) {
+		if (me == 0) {
+ MPI_Recv(&(bigM[j][0]), 1, MPI_FLOAT, 1, 0, MPI_COMM_WORLD,
+ 	            MPI_STATUS_IGNORE);
+			big_m_clone[j][0] = bigM[j][0];
+			MPI_Bcast(&(big_m_clone[j][0]),1,MPI_DOUBLE,0, MPI_COMM_WORLD);  
+		}
+ 		else if (me != 0) {
+ 		     			MPI_Send(&(bigM[j][0]), 1, MPI_FLOAT, me, 0, MPI_COMM_WORLD);
+ 		//   printf("Process 1 received number %d from process 0\n",
+           //number);
+		}
+
+*/
+		/*
+			int cutter_adjusted_position = (me * nCells / nSplits) + j;
+			big_m_clone[j][0] = cutter[cutter_adjusted_position];
+			MPI_Bcast(&big_m_clone[j][0], 1, MPI_DOUBLE, me, MPI_COMM_WORLD);
+		//int cutter_adjusted_position = (me * nCells / nSplits) + j;			
+		//MPI_Recv(&cutter[cutter_adjusted_position],1,MPI_FLOAT,me,0,MPI_COMM_WORLD, MPI_STATUS_IGNORE);			
+		//big_m_clone[j][0] = cutter[cutter_adjusted_position];
+		//MPI_Bcast(&big_m_clone[j][0], 1, MPI_FLOAT,0,MPI_COMM_WORLD);
+		//sleep(1);
+
+		cout<<"\nme equals "<<me;
+			cout<<"\n j equals "<< j;
+			cout<<"\n matrix equals "<< bigM[j][0];
+			cout<<"\n new matrix equals "<< big_m_clone[j][0];		
+*/
+		
+
+
+	if(me == 0){
+			cout<<"collector: ";
+			for (int j = 0; j < 50; j++) {
+			cout<<big_m_clone[j]<<" ";
+			}
+		}
+
+
+
