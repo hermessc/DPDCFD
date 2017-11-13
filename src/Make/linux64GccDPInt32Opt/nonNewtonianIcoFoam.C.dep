@@ -778,6 +778,7 @@ initialSetup.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/CourantNo.H \
 shearConverter.H \
 crawler.H \
+refiner.H \
 runner.H \
 lammpsRun.H \
 miner.H \

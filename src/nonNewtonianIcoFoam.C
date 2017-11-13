@@ -92,6 +92,7 @@ for(int i = 0; i < rows; i++) {
 //Step 1: Creazione prima matrice di accumulo shear //
 	if (TimeCounter == DPD_Sim_Every_X_Timestep) {			
 		#include "crawler.H"
+		#include "refiner.H"
 		#include "runner.H"
 		#include "miner.H"
 		#include "controller.H"

@@ -40,7 +40,7 @@
   //big_m_clone = malloc(sizeof(float) * cutter[rows]);
 
 int	big_m_clone[100] = {0};
-
+//da sostituire 25 con il numero di celle per processore
 	MPI_Allgather(&cutter,cutter_length,MPI_INT,&big_m_clone,25,MPI_INT,MPI_COMM_WORLD);				
 	//MPI_Barrier(MPI_COMM_WORLD);
 	
