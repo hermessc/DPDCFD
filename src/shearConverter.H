@@ -8,7 +8,8 @@
 2) definizione di stringhe di controllo
 3) costruzione della stringa che viene usata come comando di input al codice di lammps per indicare lo shear da applicare sul sistema
 */
-double shearDPD = shearRate[celli] *  0.1 / 20;
+
+double shearDPD = shear_current *  0.1 / 20;
 
 char shearStr[1024];
 char controlShear[1024];

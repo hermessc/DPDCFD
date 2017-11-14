@@ -16,3 +16,6 @@ int cutter[rows] = {0};
 
 int cells_per_proc = nCells/nSplits;
 
+char shearStr[1024];
+char controlShear[1024];
+

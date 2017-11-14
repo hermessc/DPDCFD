@@ -17,9 +17,20 @@ for(int i = 0; i < 100 ; i ++ )
 	}
 }
 
-if(me == 0){
-			cout<<"collector: ";
-			for (int j = 0; j < 100; j++) {
-			cout<<bigMM[j][0]<<" ";
-			}
-		}
+if(me == 0) {
+	cout<<"collector: ";
+	for (int j = 0; j < 100; j++) {
+		cout<<bigMM[j][0]<<" ";
+	}
+}
+
+int non_zeros = 0;
+
+for(int i = 0; i < 100 ; i ++ )	{
+	if(bigMM[i][0] != 0) {
+	non_zeros++;
+	}	
+}
+
+
+cout<<"Non zeros equals to: "<<non_zeros<<"\n";

@@ -73,13 +73,6 @@ int main(int argc, char *argv[])
         #include "CourantNo.H"
 	fluid.correct();
 	shearRate = mag(fvc::grad(U)); 
-
-	forAll(mesh.C(),celli) {	
-	#include "shearConverter.H"	
-	//cout<<"I am the shear "<<shearRate[celli]<<" from proc "<< me<<"\n";
-	}
-
-
 /*
 for(int i = 0; i < rows; i++) {
 		for(int j = 0; j < 2 ; j++ ) {
@@ -95,8 +88,6 @@ for(int i = 0; i < rows; i++) {
 		#include "refiner.H"
 		#include "runner.H"
 		#include "miner.H"
-		#include "controller.H"
-		#include "cleaner.H"
 	//MPI_Barrier(MPI_COMM_WORLD);
 	}
 

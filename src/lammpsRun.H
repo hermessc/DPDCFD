@@ -56,13 +56,13 @@ sp = fopen("/home/hermes/Desktop/gitDPD/DPDCFD/poiseuilleflow/in.supertest","r")
 			//cout<<line;			
 			std::string controlstr(line);
 			//cout<<line<<checkStr;
-			/*if (strcmp(line,checkStr) == 0 ) {//if (counter == 84){
+			if (strcmp(line,checkStr) == 0 ) {//if (counter == 84){
 			//MPI_Bcast(&counter, 1, MPI_INT,0,MPI_COMM_WORLD);			
 				cout<<"Check was fine";
 				MPI_Bcast(controlShear,n,MPI_CHAR,0,MPI_COMM_WORLD);
 				lmp->input->one(controlShear);
 				}
-			else */lmp->input->one(line);
+			else lmp->input->one(line);
 			//counter++;
 			//MPI_Bcast(&counter,1,MPI_INT,0,MPI_COMM_WORLD);
 		//if (lammps == 1) lmp->input->one(line);
@@ -107,4 +107,4 @@ else {
 }*/
 //MPI_Barrier(MPI_COMM_WORLD);
 
-delete lmp;
+
