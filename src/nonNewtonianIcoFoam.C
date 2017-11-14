@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    nonNewtonianIcoFoam
+    aNonNewtonianIcoFoam
 
 Description
     Transient solver for incompressible, laminar flow of non-Newtonian fluids.
@@ -30,14 +30,10 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
-//H
-// includere mpi.h per parallelo
 #include "mpi.h"
 #include <string>
 #include "singlePhaseTransportModel.H"
 #include "pisoControl.H"
-//H
-//includere gli headers di lammps per funzioni
 #include "lammpsHeaders.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
@@ -53,12 +49,7 @@ int main(int argc, char *argv[])
     #include "createFields.H"
     #include "initContinuityErrs.H"
     #include "DPDictionary.H"
-	//H
-	//definire le mie variabili e dichiarare il dizionario DPD 
     #include "myVar.H"
-  
-
-
     #include "initialSetup.H"
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -72,23 +63,14 @@ int main(int argc, char *argv[])
 	Info<< "Time = " << runTime.timeName() << nl << endl;
         #include "CourantNo.H"
 	fluid.correct();
-	shearRate = mag(fvc::grad(U)); 
-/*
-for(int i = 0; i < rows; i++) {
-		for(int j = 0; j < 2 ; j++ ) {
-		cout<<" "<<bigM[i][j]<<" ";
-		}
-		cout<<"\n";
-	}*/
-//	MPI_Barrier(MPI_COMM_WORLD);
-
-//Step 1: Creazione prima matrice di accumulo shear //
+	shearRate = mag(fvc::grad(U));
+	 
+	// DPD Calculation
 	if (TimeCounter == DPD_Sim_Every_X_Timestep) {			
 		#include "crawler.H"
 		#include "refiner.H"
 		#include "runner.H"
 		#include "miner.H"
-	//MPI_Barrier(MPI_COMM_WORLD);
 	}
 
         // Momentum predictor
@@ -148,19 +130,16 @@ for(int i = 0; i < rows; i++) {
 
             U = HbyA - rAU*fvc::grad(p);
             U.correctBoundaryConditions();
-//Final step:
-//Clean the matrix, clean the cutter
-/*
 
-*/	    #include "flush.H"
+
+	    #include "flush.H"
 		
 	}
-	//H
-	//variabile che conta il numero di timestep che sono passati nel calcolo cfd
+
+
 	TimeCounter++; 	
-	cout<<TimeCounter<<"\n\n\n\n";        
 	runTime.write();
-	//delete[] bigM;
+
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
             << "  ClockTime = " << runTime.elapsedClockTime() << " s"
             << nl << endl;

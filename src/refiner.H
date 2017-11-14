@@ -1,7 +1,3 @@
-//aggiungere ciclo for per ridurre le ripetizioni
-
-//nome matrice big_m_clone
-
 
 int new_counter = 0;
 for(int i = 0; i < 100 ; i ++ )
@@ -16,14 +12,14 @@ for(int i = 0; i < 100 ; i ++ )
 		}		new_counter++;	
 	}
 }
-
+/*
 if(me == 0) {
 	cout<<"collector: ";
 	for (int j = 0; j < 100; j++) {
 		cout<<bigMM[j][0]<<" ";
 	}
 }
-
+*/
 int non_zeros = 0;
 
 for(int i = 0; i < 100 ; i ++ )	{
@@ -33,4 +29,4 @@ for(int i = 0; i < 100 ; i ++ )	{
 }
 
 
-cout<<"Non zeros equals to: "<<non_zeros<<"\n";
+//cout<<"Non zeros equals to: "<<non_zeros<<"\n";
