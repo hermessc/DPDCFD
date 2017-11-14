@@ -3,10 +3,16 @@ CFDDPDCoupling
 
 
 # src 
-It contains the source code
+The source code
 
 # poiseuille flow
-It contains an openfoam testcase in which a pipe containing water is simulated
+2D simulation of a pipe with flowing water
 
 # test
-It contains couette example with constant shear value
+2D, moving top and fixed bottom
+
+# taylorCouette
+2D simulation of taylor-couette flow 
+
+# tc3 
+3D simulation of taylor-coette flow
