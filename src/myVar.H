@@ -18,4 +18,5 @@ int cells_per_proc = nCells/nSplits;
 
 char shearStr[1024];
 char controlShear[1024];
-
+int big_m_clone[100] = {0};
+int bigMM[100][2] = {0};

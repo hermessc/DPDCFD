@@ -2,7 +2,7 @@
 
 //nome matrice big_m_clone
 
-int bigMM[100][2] = {0};
+
 int new_counter = 0;
 for(int i = 0; i < 100 ; i ++ )
 {

@@ -782,8 +782,7 @@ runner.H \
 shearConverter.H \
 lammpsRun.H \
 miner.H \
-controller.H \
-cleaner.H \
+coupler.H \
 $(WM_PROJECT_DIR)/src/finiteVolume/lnInclude/continuityErrs.H \
 
 
