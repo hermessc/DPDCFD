@@ -1,0 +1,85 @@
+########## DEFINING VARIABLES ##############
+units		lj													#UDM Sistema internazionale
+variable       ndim  equal 3										#variabile usata per definire 2 o 3 D
+variable number_density equal 3                                                      #Densità di particelle
+
+variable	ciao equal 10/${ndim}							#Variabile di prova 
+
+variable        xsize equal 10									#creazione della box, dimensione x
+variable        ysize equal 10									#creazione della box, dimensione y
+if "${ndim}==3" then "variable        zsize equal 	10"	#creazione della box, dimensione z
+ 
+variable        kb equal 1.0							#Definizione della costante di boltzmann
+variable        T equal 1/${kb}									#In DPD il parametro T*kb = 1, ricavo T
+
+
+# interaction parameters
+variable        cutoff equal 1.0									#parametri DPD, distanza di cut tra particelle	
+variable        sigma equal 3									#coeff random
+
+variable        gamma equal ${sigma}^2/(2*${T}*${kb}) 		#coeff dissipativo
+variable        sigma delete
+
+# number of timesteps
+variable ntime equal 100000									#param di simulazione
+timestep	0.01												#timestep
+
+
+####### SYS SETTINGS ##########
+atom_style      dpd
+#boundary         p p p
+comm_modify 	vel yes
+###########################
+
+
+####### GEOMETRY ########
+lattice		none 1
+region		mybox prism 0 ${xsize}  0 ${ysize} 0 ${zsize} 0 0 0
+create_box      1 mybox 
+########################
+
+
+#############################
+
+ 
+###### PARTICLES IN THE BOX ######
+create_atoms 1 random 3000 123445 NULL
+ 
+
+####MASS OF THE PARTICLES ######
+mass * 1.0
+###########################
+
+###### NEIGHBORING LIST #######
+neighbor 			2.0 bin
+neigh_modify 	delay 0 every 1 check yes
+##########################
+
+######INTERACTION COEFF #########
+
+pair_style      		dpd ${T} ${cutoff} 928948
+
+pair_coeff      	 1 1 	25.0  		${gamma}	 #acqua
+############################
+
+
+####CALC #################
+
+thermo 1000
+minimize 1.0e-5 1.0e-7 1000 10000
+run 5000
+variable srate equal 0.01
+
+fix 	1 all nve
+fix		2 all nvt/sllod temp $T $T 0.1
+fix     3 all deform 1 xy  erate ${srate} units box remap v
+
+compute	stream all temp/deform
+fix o2 all ave/spatial 1 10000 10000 y lower 0.01 vx vy vz density/number ave running units reduced file all_s0002.space
+run 0
+variable	visc equal -pxy/(v_srate/ly)
+run 0
+fix		vave all ave/time 10 100 1000 v_visc ave running 
+thermo_style	custom step temp press pxy v_visc f_vave
+run 250000
+#############################
